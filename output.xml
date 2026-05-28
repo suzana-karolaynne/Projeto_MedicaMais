@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.15.0b1 on win32)" generated="2026-05-28T14:24:36.458466" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.2 (Python 3.12.10 on win32)" generated="2026-05-28T16:05:09.640930" rpa="false" schemaversion="5">
 <suite id="s1" name="Ui Medicamento" source="C:\Users\Levvo Samir\Documents\medica-mais-teste\tests\ui_medicamento.robot">
-<test id="s1-t1" name="CT01 - Cadastro válido de medicamento" line="10">
+<test id="s1-t1" name="CT01 - Cadastro de medicamento válido" line="9">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-28T16:05:10.425621" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-28T16:05:10.424623" elapsed="2.462674"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-05-28T16:05:12.903254" elapsed="0.098397"/>
+</kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-05-28T14:24:36.576040" level="INFO">Validando cadastro de medicamento</msg>
-<arg>Validando cadastro de medicamento</arg>
+<msg time="2026-05-28T16:05:13.002648" level="INFO">Simulação de cadastro de medicamento</msg>
+<arg>Simulação de cadastro de medicamento</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-05-28T14:24:36.575564" elapsed="0.000584"/>
+<status status="PASS" start="2026-05-28T16:05:13.002648" elapsed="0.000000"/>
 </kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${MEDICAMENTO}</arg>
-<arg>Dipirona</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-05-28T14:24:36.576670" elapsed="0.000500"/>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-28T16:05:13.007635" level="INFO">Page title is 'MedicaMais'.</msg>
+<arg>MedicaMais</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-05-28T16:05:13.003645" elapsed="0.003990"/>
 </kw>
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<arg>${DOSE}</arg>
-<arg>20</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2026-05-28T14:24:36.579548" elapsed="0.000545"/>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-28T16:05:13.009612" elapsed="2.436052"/>
 </kw>
-<status status="PASS" start="2026-05-28T14:24:36.574051" elapsed="0.006623"/>
+<status status="PASS" start="2026-05-28T16:05:10.423626" elapsed="5.022038"/>
 </test>
-<test id="s1-t2" name="CT02 - Unidade correta" line="15">
+<test id="s1-t2" name="CT02 - Unidade correta do medicamento" line="19">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-28T16:05:15.445664" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-28T16:05:15.445664" elapsed="2.383791"/>
+</kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-05-28T14:24:36.582826" level="INFO">Validando unidade do medicamento</msg>
-<arg>Validando unidade do medicamento</arg>
+<msg time="2026-05-28T16:05:17.864361" level="INFO">Verificando unidade gotas</msg>
+<arg>Verificando unidade gotas</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-05-28T14:24:36.582488" elapsed="0.000416"/>
+<status status="PASS" start="2026-05-28T16:05:17.864361" elapsed="0.000000"/>
 </kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${UNIDADE}</arg>
-<arg>gotas</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-05-28T14:24:36.583288" elapsed="0.015152"/>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-28T16:05:17.872340" level="INFO">Page title is 'MedicaMais'.</msg>
+<arg>MedicaMais</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-05-28T16:05:17.865358" elapsed="0.006982"/>
 </kw>
-<status status="PASS" start="2026-05-28T14:24:36.581841" elapsed="0.031506"/>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-28T16:05:17.882577" elapsed="2.984190"/>
+</kw>
+<status status="PASS" start="2026-05-28T16:05:15.445664" elapsed="5.421103"/>
 </test>
-<doc>Teste de Interface - Cadastro de Medicamento</doc>
-<status status="PASS" start="2026-05-28T14:24:36.460708" elapsed="0.185119"/>
+<status status="PASS" start="2026-05-28T16:05:09.642925" elapsed="11.223842"/>
 </suite>
 <statistics>
 <total>

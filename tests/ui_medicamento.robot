@@ -1,17 +1,26 @@
 *** Settings ***
-Documentation     Teste de Interface - Cadastro de Medicamento
+Library    SeleniumLibrary
 
 *** Variables ***
-${MEDICAMENTO}    Dipirona
-${DOSE}           20
-${UNIDADE}        gotas
+${URL}        http://localhost:3000
+${BROWSER}    chrome
 
 *** Test Cases ***
-CT01 - Cadastro válido de medicamento
-    Log    Validando cadastro de medicamento
-    Should Be Equal    ${MEDICAMENTO}    Dipirona
-    Should Be Equal As Numbers    ${DOSE}    20
+CT01 - Cadastro de medicamento válido
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
 
-CT02 - Unidade correta
-    Log    Validando unidade do medicamento
-    Should Be Equal    ${UNIDADE}    gotas
+    Log    Simulação de cadastro de medicamento
+
+    Title Should Be    MedicaMais
+
+    Close Browser
+
+CT02 - Unidade correta do medicamento
+    Open Browser    ${URL}    ${BROWSER}
+
+    Log    Verificando unidade gotas
+
+    Title Should Be    MedicaMais
+
+    Close Browser

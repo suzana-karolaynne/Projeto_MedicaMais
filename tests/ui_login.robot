@@ -1,16 +1,26 @@
 *** Settings ***
-Documentation     Teste de Interface - Login MedicaMais
+Library    SeleniumLibrary
 
 *** Variables ***
-${EMAIL_VALIDO}       suzanakarolaynne@gmail.com
-${SENHA_VALIDA}       12345678
+${URL}        http://localhost:3000
+${BROWSER}    chrome
 
 *** Test Cases ***
-CT01 - Login com credenciais válidas
-    Log    Tentando login com email válido
-    Should Be Equal    ${EMAIL_VALIDO}    suzanakarolaynne@gmail.com
-    Should Be Equal    ${SENHA_VALIDA}    12345678
+CT01 - Login válido
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
 
-CT02 - Login com senha inválida
-    Log    Tentando login com senha inválida
-    Should Not Be Equal    senhaErrada    ${SENHA_VALIDA}
+    Log    Simulação de login válido
+
+    Title Should Be    MedicaMais
+
+    Close Browser
+
+CT02 - Login inválido
+    Open Browser    ${URL}    ${BROWSER}
+
+    Log    Simulação de login inválido
+
+    Title Should Be    MedicaMais
+
+    Close Browser

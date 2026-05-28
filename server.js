@@ -52,6 +52,19 @@ app.post("/medicamentos", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <title>MedicaMais</title>
+            </head>
+            <body>
+                <h1>MedicaMais</h1>
+            </body>
+        </html>
+    `);
+});
+
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
 });

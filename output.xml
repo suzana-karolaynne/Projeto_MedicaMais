@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.15.0b1 on win32)" generated="2026-05-28T14:24:36.458466" rpa="false" schemaversion="5">
+<suite id="s1" name="Ui Medicamento" source="C:\Users\Levvo Samir\Documents\medica-mais-teste\tests\ui_medicamento.robot">
+<test id="s1-t1" name="CT01 - Cadastro válido de medicamento" line="10">
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-05-28T14:24:36.576040" level="INFO">Validando cadastro de medicamento</msg>
+<arg>Validando cadastro de medicamento</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-05-28T14:24:36.575564" elapsed="0.000584"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${MEDICAMENTO}</arg>
+<arg>Dipirona</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-05-28T14:24:36.576670" elapsed="0.000500"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${DOSE}</arg>
+<arg>20</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-05-28T14:24:36.579548" elapsed="0.000545"/>
+</kw>
+<status status="PASS" start="2026-05-28T14:24:36.574051" elapsed="0.006623"/>
+</test>
+<test id="s1-t2" name="CT02 - Unidade correta" line="15">
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-05-28T14:24:36.582826" level="INFO">Validando unidade do medicamento</msg>
+<arg>Validando unidade do medicamento</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-05-28T14:24:36.582488" elapsed="0.000416"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${UNIDADE}</arg>
+<arg>gotas</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-05-28T14:24:36.583288" elapsed="0.015152"/>
+</kw>
+<status status="PASS" start="2026-05-28T14:24:36.581841" elapsed="0.031506"/>
+</test>
+<doc>Teste de Interface - Cadastro de Medicamento</doc>
+<status status="PASS" start="2026-05-28T14:24:36.460708" elapsed="0.185119"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Ui Medicamento" id="s1" pass="2" fail="0" skip="0">Ui Medicamento</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

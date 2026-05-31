@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Medicamento</title>
+</head>
+<body>
+  <h1>Cadastro de Medicamento</h1>
+
+  <input id="nome" placeholder="Nome do medicamento">
+  <input id="dose" type="number" placeholder="Dose">
+  <input id="unidade" placeholder="Unidade">
+  <input id="horario" placeholder="Horário">
+
+  <button id="btnSalvar" onclick="salvarMedicamento()">Salvar</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    function salvarMedicamento() {
+      const nome = document.getElementById("nome").value;
+      const dose = document.getElementById("dose").value;
+      const unidade = document.getElementById("unidade").value;
+      const horario = document.getElementById("horario").value;
+      const mensagem = document.getElementById("mensagem");
+
+      if (!nome || !dose || !unidade || !horario) {
+        mensagem.innerText = "Todos os campos são obrigatórios";
+      } else if (Number(dose) <= 0) {
+        mensagem.innerText = "Dose inválida";
+      } else {
+        mensagem.innerText = "Medicamento cadastrado com sucesso";
+      }
+    }
+  </script>
+</body>
+</html>

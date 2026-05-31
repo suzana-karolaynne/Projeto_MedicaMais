@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinais Vitais - MedicaMais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #112A46 0%, #0F5B78 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #0F5B78;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .input-group.full-width {
+            grid-column: span 2;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 14px 14px 40px;
+            border-radius: 12px;
+            border: 2px solid #e1e5ee;
+            background: #f8fafc;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff9800;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.15);
+        }
+
+        .icon {
+            position: absolute;
+            left: 12px;
+            top: 40px;
+            font-size: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            grid-column: span 2;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #mensagem {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            grid-column: span 2;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Sinais Vitais</h2>
+        
+        <div class="grid">
+            <div class="input-group full-width">
+                <label for="pressao">Pressão Arterial</label>
+                <span class="icon">❤️</span>
+                <input type="text" id="pressao" placeholder="Ex: 120x80 mmHg">
+            </div>
+
+            <div class="input-group">
+                <label for="temperatura">Temperatura</label>
+                <span class="icon">🌡️</span>
+                <input type="number" id="temperatura" placeholder="36.5" step="0.1">
+            </div>
+
+            <div class="input-group">
+                <label for="frequencia">Freq. Cardíaca</label>
+                <span class="icon">💓</span>
+                <input type="number" id="frequencia" placeholder="bpm">
+            </div>
+
+            <div class="input-group full-width">
+                <label for="saturacao">Saturação de Oxigênio</label>
+                <span class="icon">🫁</span>
+                <input type="number" id="saturacao" placeholder="SpO2 %">
+            </div>
+
+            <button id="btnSalvar" onclick="salvarSinais()">
+                <span id="btnText">Registrar Sinais</span>
+                <div class="loader" id="loader"></div>
+            </button>
+            <div id="mensagem"></div>
+        </div>
+    </div>
+
+    <script>
+        async function salvarSinais() {
+            const pressao = document.getElementById("pressao").value;
+            const temperatura = document.getElementById("temperatura").value;
+            const frequencia = document.getElementById("frequencia").value;
+            const saturacao = document.getElementById("saturacao").value;
+            
+            const msg = document.getElementById("mensagem");
+            const btn = document.getElementById("btnSalvar");
+            const btnText = document.getElementById("btnText");
+            const loader = document.getElementById("loader");
+
+            msg.style.opacity = 0;
+
+            if (!pressao || !temperatura) {
+                msg.style.color = "#d32f2f";
+                msg.innerText = "Pressão e temperatura são obrigatórios.";
+                msg.style.opacity = 1;
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            loader.style.display = 'inline-block';
+
+            try {
+                const response = await fetch('http://localhost:3000/sinais-vitais', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        pressao, 
+                        temperatura: Number(temperatura),
+                        frequencia: frequencia ? Number(frequencia) : undefined,
+                        saturacao: saturacao ? Number(saturacao) : undefined
+                    })
+                });
+                
+                const data = await response.json();
+                
+                msg.style.color = response.ok ? "#2e7d32" : "#d32f2f";
+                msg.innerText = data.mensagem;
+                msg.style.opacity = 1;
+
+                if (response.ok) {
+                    setTimeout(() => {
+                        document.getElementById("pressao").value = '';
+                        document.getElementById("temperatura").value = '';
+                        document.getElementById("frequencia").value = '';
+                        document.getElementById("saturacao").value = '';
+                    }, 2000);
+                }
+            } catch (error) {
+                msg.style.color = "#d32f2f";
+                msg.innerText = "Erro ao conectar com o servidor.";
+                msg.style.opacity = 1;
+            } finally {
+                btn.disabled = false;
+                btnText.style.display = 'inline-block';
+                loader.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

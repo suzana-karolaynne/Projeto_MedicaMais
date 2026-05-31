@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - MedicaMais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2a5298;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(23, 162, 184, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #mensagem {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Agendar Consulta</h2>
+        
+        <div class="input-group">
+            <label for="especialidade">Especialidade</label>
+            <select id="especialidade">
+                <option value="">Selecione...</option>
+                <option value="Cardiologia">Cardiologia</option>
+                <option value="Clínico Geral">Clínico Geral</option>
+                <option value="Dermatologia">Dermatologia</option>
+                <option value="Ortopedia">Ortopedia</option>
+                <option value="Pediatria">Pediatria</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="medico">Nome do Médico</label>
+            <input type="text" id="medico" placeholder="Ex: Dr. João Silva">
+        </div>
+
+        <div class="input-group" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <label for="data">Data</label>
+                <input type="date" id="data">
+            </div>
+            <div style="flex: 1;">
+                <label for="hora">Hora</label>
+                <input type="time" id="hora">
+            </div>
+        </div>
+
+        <button id="btnAgendar" onclick="agendarConsulta()">
+            <span id="btnText">Confirmar Agendamento</span>
+            <div class="loader" id="loader"></div>
+        </button>
+        <div id="mensagem"></div>
+    </div>
+
+    <script>
+        async function agendarConsulta() {
+            const especialidade = document.getElementById("especialidade").value;
+            const medico = document.getElementById("medico").value;
+            const dataInput = document.getElementById("data").value;
+            const hora = document.getElementById("hora").value;
+            const msg = document.getElementById("mensagem");
+            const btn = document.getElementById("btnAgendar");
+            const btnText = document.getElementById("btnText");
+            const loader = document.getElementById("loader");
+
+            msg.style.opacity = 0;
+
+            if (!especialidade || !medico || !dataInput || !hora) {
+                msg.style.color = "#d9534f";
+                msg.innerText = "Por favor, preencha todos os campos.";
+                msg.style.opacity = 1;
+                return;
+            }
+
+            // Converter data YYYY-MM-DD para DD/MM/YYYY para manter a compatibilidade
+            const [ano, mes, dia] = dataInput.split('-');
+            const dataFormatada = `${dia}/${mes}/${ano}`;
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            loader.style.display = 'inline-block';
+
+            try {
+                const response = await fetch('http://localhost:3000/agenda', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ medico, especialidade, data: dataFormatada, hora })
+                });
+                
+                const responseData = await response.json();
+                
+                msg.style.color = response.ok ? "#28a745" : "#d9534f";
+                msg.innerText = responseData.mensagem;
+                msg.style.opacity = 1;
+                
+                if(response.ok) {
+                    setTimeout(() => {
+                        document.getElementById("especialidade").value = '';
+                        document.getElementById("medico").value = '';
+                        document.getElementById("data").value = '';
+                        document.getElementById("hora").value = '';
+                    }, 2000);
+                }
+            } catch (error) {
+                msg.style.color = "#d9534f";
+                msg.innerText = "Erro de conexão com o servidor.";
+                msg.style.opacity = 1;
+            } finally {
+                btn.disabled = false;
+                btnText.style.display = 'inline-block';
+                loader.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.5 on win32)" generated="2026-05-31T23:47:39.005388" rpa="false" schemaversion="5">
+<suite id="s1" name="Yago Exames Interface" source="C:\Users\Yagoa\Downloads\test\Projeto_MedicaMais\robot\yago_exames_interface.robot">
+<test id="s1-t1" name="CT01 - Deve validar campos obrigatórios no registro de exame" line="16">
+<kw name="Abrir tela de exames">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:39.247692" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000/exames.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-31T23:47:39.247451" elapsed="0.735092"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-05-31T23:47:39.982750" elapsed="0.024046"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:39.246851" elapsed="0.760084"/>
+</kw>
+<kw name="Clicar em registrar exame">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:40.008155" level="INFO">Clicking button 'id=btnRegistrarExame'.</msg>
+<arg>${BOTAO_REGISTRAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T23:47:40.007775" elapsed="0.098645"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:40.007499" elapsed="0.099028"/>
+</kw>
+<kw name="Então deve exibir a mensagem">
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-05-31T23:47:40.106998" elapsed="0.013282"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:40.120719" level="INFO">Verifying element 'id=mensagem' contains exact text 'Todos os campos são obrigatórios'.</msg>
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-05-31T23:47:40.120442" elapsed="0.011358"/>
+</kw>
+<arg>Todos os campos são obrigatórios</arg>
+<status status="PASS" start="2026-05-31T23:47:40.106764" elapsed="0.025332"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:40.220751" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="docs/yago-testes-interface/evidencias/ct01-exame-campos-obrigatorios.png"&gt;&lt;img src="docs/yago-testes-interface/evidencias/ct01-exame-campos-obrigatorios.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>docs/yago-testes-interface/evidencias/ct01-exame-campos-obrigatorios.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-05-31T23:47:40.132739" elapsed="0.088106"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-31T23:47:40.221444" elapsed="2.107046"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:39.246190" elapsed="3.083050"/>
+</test>
+<test id="s1-t2" name="CT02 - Deve registrar exame com dados válidos" line="22">
+<kw name="Abrir tela de exames">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:42.334592" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000/exames.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-31T23:47:42.334397" elapsed="0.641770"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-05-31T23:47:42.976374" elapsed="0.027597"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:42.334161" elapsed="0.669958"/>
+</kw>
+<kw name="Informar nome do exame">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.005183" level="INFO">Typing text 'Hemograma' into text field 'id=nomeExame'.</msg>
+<arg>${INPUT_NOME_EXAME}</arg>
+<arg>${nome}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.004912" elapsed="0.104600"/>
+</kw>
+<arg>Hemograma</arg>
+<status status="PASS" start="2026-05-31T23:47:43.004629" elapsed="0.105019"/>
+</kw>
+<kw name="Informar data do exame">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.110628" level="INFO">Typing text '2026-05-31' into text field 'id=dataExame'.</msg>
+<arg>${INPUT_DATA_EXAME}</arg>
+<arg>${data}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.110302" elapsed="0.068828"/>
+</kw>
+<arg>2026-05-31</arg>
+<status status="PASS" start="2026-05-31T23:47:43.110001" elapsed="0.069238"/>
+</kw>
+<kw name="Informar resultado">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.180029" level="INFO">Typing text 'Normal' into text field 'id=resultado'.</msg>
+<arg>${INPUT_RESULTADO}</arg>
+<arg>${resultado}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.179781" elapsed="0.071078"/>
+</kw>
+<arg>Normal</arg>
+<status status="PASS" start="2026-05-31T23:47:43.179519" elapsed="0.071493"/>
+</kw>
+<kw name="Clicar em registrar exame">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.251907" level="INFO">Clicking button 'id=btnRegistrarExame'.</msg>
+<arg>${BOTAO_REGISTRAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.251651" elapsed="0.082121"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:43.251345" elapsed="0.082538"/>
+</kw>
+<kw name="Então deve exibir a mensagem">
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.334408" elapsed="0.025313"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.360158" level="INFO">Verifying element 'id=mensagem' contains exact text 'Exame registrado com sucesso'.</msg>
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.359902" elapsed="0.016377"/>
+</kw>
+<arg>Exame registrado com sucesso</arg>
+<status status="PASS" start="2026-05-31T23:47:43.334155" elapsed="0.042211"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-05-31T23:47:43.432781" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="docs/yago-testes-interface/evidencias/ct02-exame-valido.png"&gt;&lt;img src="docs/yago-testes-interface/evidencias/ct02-exame-valido.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>docs/yago-testes-interface/evidencias/ct02-exame-valido.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.376592" elapsed="0.056289"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-31T23:47:43.433224" elapsed="2.108046"/>
+</kw>
+<status status="PASS" start="2026-05-31T23:47:42.332134" elapsed="3.209803"/>
+</test>
+<status status="PASS" start="2026-05-31T23:47:39.006828" elapsed="6.536312"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Yago Exames Interface" id="s1" pass="2" fail="0" skip="0">Yago Exames Interface</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

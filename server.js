@@ -5,6 +5,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 app.post("/login", (req, res) => {
   const { email, senha } = req.body;
@@ -52,17 +53,72 @@ app.post("/medicamentos", (req, res) => {
   });
 });
 
+app.post("/vacinas", (req, res) => {
+  const { nomeVacina, dataAplicacao, dose } = req.body;
+
+  if (!nomeVacina || !dataAplicacao || !dose) {
+    return res.status(400).json({
+      mensagem: "Todos os campos são obrigatórios"
+    });
+  }
+
+  const data = new Date(dataAplicacao);
+
+  if (isNaN(data.getTime())) {
+    return res.status(400).json({
+      mensagem: "Data de aplicação inválida"
+    });
+  }
+
+  return res.status(201).json({
+    mensagem: "Vacina registrada com sucesso",
+    vacina: {
+      nomeVacina,
+      dataAplicacao,
+      dose
+    }
+  });
+});
+
+app.post("/exames", (req, res) => {
+  const { nomeExame, dataExame, resultado } = req.body;
+
+  if (!nomeExame || !dataExame || !resultado) {
+    return res.status(400).json({
+      mensagem: "Todos os campos são obrigatórios"
+    });
+  }
+
+  const data = new Date(dataExame);
+
+  if (isNaN(data.getTime())) {
+    return res.status(400).json({
+      mensagem: "Data do exame inválida"
+    });
+  }
+
+  return res.status(201).json({
+    mensagem: "Exame registrado com sucesso",
+    exame: {
+      nomeExame,
+      dataExame,
+      resultado
+    }
+  });
+});
+
 app.get("/", (req, res) => {
-    res.send(`
-        <html>
-            <head>
-                <title>MedicaMais</title>
-            </head>
-            <body>
-                <h1>MedicaMais</h1>
-            </body>
-        </html>
-    `);
+  res.send(`
+    <html>
+      <head>
+        <title>MedicaMais</title>
+      </head>
+      <body>
+        <h1>MedicaMais</h1>
+        <p>API em funcionamento.</p>
+      </body>
+    </html>
+  `);
 });
 
 app.listen(3000, () => {

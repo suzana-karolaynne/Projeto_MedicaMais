@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>MedicaMais - Vacinas</title>
+</head>
+<body>
+  <h1>Registro de Vacinas</h1>
+
+  <label>Nome da Vacina</label>
+  <input id="nomeVacina" type="text">
+
+  <br><br>
+
+  <label>Data de Aplicação</label>
+  <input id="dataAplicacao" type="date">
+
+  <br><br>
+
+  <label>Dose</label>
+  <input id="dose" type="text">
+
+  <br><br>
+
+  <button id="btnRegistrarVacina" onclick="registrarVacina()">Registrar Vacina</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    function registrarVacina() {
+      const nomeVacina = document.getElementById("nomeVacina").value;
+      const dataAplicacao = document.getElementById("dataAplicacao").value;
+      const dose = document.getElementById("dose").value;
+      const mensagem = document.getElementById("mensagem");
+
+      if (!nomeVacina || !dataAplicacao || !dose) {
+        mensagem.innerText = "Todos os campos são obrigatórios";
+        return;
+      }
+
+      mensagem.innerText = "Vacina registrada com sucesso";
+    }
+  </script>
+</body>
+</html>

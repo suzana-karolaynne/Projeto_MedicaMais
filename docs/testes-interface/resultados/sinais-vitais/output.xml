@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.5 on win32)" generated="2026-05-31T21:53:50.873434" rpa="false" schemaversion="5">
+<suite id="s1" name="Sinais Vitais Interface Yago" source="C:\Users\Yagoa\Downloads\test\Projeto_MedicaMais\robot\sinais_vitais_interface_yago.robot">
+<test id="s1-t1" name="CT01 - Deve validar pressão e temperatura obrigatórias" line="17">
+<kw name="Abrir tela de sinais vitais">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:51.161434" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000/sinais_vitais.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-31T21:53:51.161204" elapsed="1.015854"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-05-31T21:53:52.177289" elapsed="0.034757"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:51.160566" elapsed="1.051620"/>
+</kw>
+<kw name="Clicar em registrar sinais">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:52.213263" level="INFO">Clicking button 'id=btnSalvar'.</msg>
+<arg>${BOTAO_SALVAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T21:53:52.212842" elapsed="0.077907"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:52.212527" elapsed="0.078338"/>
+</kw>
+<kw name="Então deve exibir a mensagem">
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-05-31T21:53:52.292952" elapsed="0.451781"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:52.745185" level="INFO">Verifying element 'id=mensagem' contains exact text 'Pressão e temperatura são obrigatórios.'.</msg>
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-05-31T21:53:52.744900" elapsed="0.010293"/>
+</kw>
+<arg>Pressão e temperatura são obrigatórios.</arg>
+<status status="PASS" start="2026-05-31T21:53:52.292316" elapsed="0.462968"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:53.373200" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="docs/testes-interface/evidencias/ct01-sinais-pressao-temperatura-obrigatorias.png"&gt;&lt;img src="docs/testes-interface/evidencias/ct01-sinais-pressao-temperatura-obrigatorias.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>docs/testes-interface/evidencias/ct01-sinais-pressao-temperatura-obrigatorias.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-05-31T21:53:52.755487" elapsed="0.617828"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-31T21:53:53.373668" elapsed="2.129531"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:51.159919" elapsed="4.343484"/>
+</test>
+<test id="s1-t2" name="CT02 - Deve validar temperatura obrigatória" line="23">
+<kw name="Abrir tela de sinais vitais">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:55.504762" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000/sinais_vitais.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-05-31T21:53:55.504517" elapsed="0.964713"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.469439" elapsed="0.034101"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:55.504274" elapsed="0.999384"/>
+</kw>
+<kw name="Informar pressão arterial">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:56.504662" level="INFO">Typing text '120x80' into text field 'id=pressao'.</msg>
+<arg>${INPUT_PRESSAO}</arg>
+<arg>${pressao}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.504225" elapsed="0.143290"/>
+</kw>
+<arg>120x80</arg>
+<status status="PASS" start="2026-05-31T21:53:56.503938" elapsed="0.143702"/>
+</kw>
+<kw name="Clicar em registrar sinais">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:56.655795" level="INFO">Clicking button 'id=btnSalvar'.</msg>
+<arg>${BOTAO_SALVAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.652856" elapsed="0.056249"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:56.649792" elapsed="0.059442"/>
+</kw>
+<kw name="Então deve exibir a mensagem">
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.709924" elapsed="0.239425"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:56.949902" level="INFO">Verifying element 'id=mensagem' contains exact text 'Pressão e temperatura são obrigatórios.'.</msg>
+<arg>${LOCATOR_MENSAGEM}</arg>
+<arg>${TEXTO_ESPERADO}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.949585" elapsed="0.008190"/>
+</kw>
+<arg>Pressão e temperatura são obrigatórios.</arg>
+<status status="PASS" start="2026-05-31T21:53:56.709563" elapsed="0.248302"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-05-31T21:53:57.337653" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="docs/testes-interface/evidencias/ct02-sinais-temperatura-obrigatoria.png"&gt;&lt;img src="docs/testes-interface/evidencias/ct02-sinais-temperatura-obrigatoria.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>docs/testes-interface/evidencias/ct02-sinais-temperatura-obrigatoria.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-05-31T21:53:56.958100" elapsed="0.379697"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-05-31T21:53:57.340225" elapsed="2.120860"/>
+</kw>
+<status status="PASS" start="2026-05-31T21:53:55.503868" elapsed="3.957409"/>
+</test>
+<status status="PASS" start="2026-05-31T21:53:50.874563" elapsed="8.587332"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Sinais Vitais Interface Yago" id="s1" pass="2" fail="0" skip="0">Sinais Vitais Interface Yago</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

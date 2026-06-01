@@ -53,86 +53,56 @@ app.post("/medicamentos", (req, res) => {
   });
 });
 
-app.post("/agendamentos", (req, res) => {
-  const { especialidade, medico, data, hora } = req.body;
+app.post("/vacinas", (req, res) => {
+  const { nomeVacina, dataAplicacao, dose } = req.body;
 
-  if (!especialidade || !medico || !data || !hora) {
+  if (!nomeVacina || !dataAplicacao || !dose) {
     return res.status(400).json({
       mensagem: "Todos os campos são obrigatórios"
     });
   }
 
-  const dataConsulta = new Date(`${data}T${hora}`);
+  const data = new Date(dataAplicacao);
 
-  if (isNaN(dataConsulta.getTime())) {
+  if (isNaN(data.getTime())) {
     return res.status(400).json({
-      mensagem: "Data ou hora inválida"
-    });
-  }
-
-  const agora = new Date();
-
-  if (dataConsulta <= agora) {
-    return res.status(400).json({
-      mensagem: "A consulta deve ser agendada para uma data futura"
+      mensagem: "Data de aplicação inválida"
     });
   }
 
   return res.status(201).json({
-    mensagem: "Agendamento realizado com sucesso",
-    agendamento: {
-      especialidade,
-      medico,
-      data,
-      hora
+    mensagem: "Vacina registrada com sucesso",
+    vacina: {
+      nomeVacina,
+      dataAplicacao,
+      dose
     }
   });
 });
 
-app.post("/sinais-vitais", (req, res) => {
-  const {
-    pressaoArterial,
-    temperatura,
-    frequenciaCardiaca,
-    saturacaoOxigenio
-  } = req.body;
+app.post("/exames", (req, res) => {
+  const { nomeExame, dataExame, resultado } = req.body;
 
-  if (
-    !pressaoArterial ||
-    temperatura === undefined ||
-    frequenciaCardiaca === undefined ||
-    saturacaoOxigenio === undefined
-  ) {
+  if (!nomeExame || !dataExame || !resultado) {
     return res.status(400).json({
       mensagem: "Todos os campos são obrigatórios"
     });
   }
 
-  if (Number(temperatura) < 35 || Number(temperatura) > 42) {
-    return res.status(400).json({
-      mensagem: "Temperatura fora da faixa permitida"
-    });
-  }
+  const data = new Date(dataExame);
 
-  if (Number(frequenciaCardiaca) < 40 || Number(frequenciaCardiaca) > 180) {
+  if (isNaN(data.getTime())) {
     return res.status(400).json({
-      mensagem: "Frequência cardíaca fora da faixa permitida"
-    });
-  }
-
-  if (Number(saturacaoOxigenio) < 70 || Number(saturacaoOxigenio) > 100) {
-    return res.status(400).json({
-      mensagem: "Saturação de oxigênio fora da faixa permitida"
+      mensagem: "Data do exame inválida"
     });
   }
 
   return res.status(201).json({
-    mensagem: "Sinais vitais registrados com sucesso",
-    sinaisVitais: {
-      pressaoArterial,
-      temperatura: Number(temperatura),
-      frequenciaCardiaca: Number(frequenciaCardiaca),
-      saturacaoOxigenio: Number(saturacaoOxigenio)
+    mensagem: "Exame registrado com sucesso",
+    exame: {
+      nomeExame,
+      dataExame,
+      resultado
     }
   });
 });

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>MedicaMais - Exames</title>
+</head>
+<body>
+  <h1>Registro de Exames</h1>
+
+  <label>Nome do Exame</label>
+  <input id="nomeExame" type="text">
+
+  <br><br>
+
+  <label>Data do Exame</label>
+  <input id="dataExame" type="date">
+
+  <br><br>
+
+  <label>Resultado</label>
+  <input id="resultado" type="text">
+
+  <br><br>
+
+  <button id="btnRegistrarExame" onclick="registrarExame()">Registrar Exame</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    function registrarExame() {
+      const nomeExame = document.getElementById("nomeExame").value;
+      const dataExame = document.getElementById("dataExame").value;
+      const resultado = document.getElementById("resultado").value;
+      const mensagem = document.getElementById("mensagem");
+
+      if (!nomeExame || !dataExame || !resultado) {
+        mensagem.innerText = "Todos os campos são obrigatórios";
+        return;
+      }
+
+      mensagem.innerText = "Exame registrado com sucesso";
+    }
+  </script>
+</body>
+</html>

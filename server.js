@@ -109,8 +109,15 @@ app.post("/exames", (req, res) => {
 
 app.get("/", (req, res) => {
   res.send(`
-    <h1>MedicaMais</h1>
-    <p>API em funcionamento.</p>
+    <html>
+      <head>
+        <title>MedicaMais</title>
+      </head>
+      <body>
+        <h1>MedicaMais</h1>
+        <p>API em funcionamento.</p>
+      </body>
+    </html>
   `);
 });
 

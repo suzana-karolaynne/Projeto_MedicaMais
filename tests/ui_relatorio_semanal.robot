@@ -1,11 +1,9 @@
-Language: pt-BR
-
-*** Configurações ***
+*** Settings ***
 Library         SeleniumLibrary
 Suite Setup     Dado que o usuario acessa a tela de relatorios
 Suite Teardown  E fecha o navegador
 
-*** Variáveis ***
+*** Variables ***
 ${URL}                 http://localhost:3000/relatorios
 ${BROWSER}             chrome
 ${INPUT_DATA_INICIO}   id=dataInicio
@@ -14,7 +12,7 @@ ${BOTAO_GERAR}         id=btnGerarRelatorio
 ${MENSAGEM_ERRO}       id=mensagemErro
 ${TABELA_RESULTADOS}   id=tabelaMetricas
 
-*** Casos de Teste ***
+*** Test Cases ***
 CT01 - Deve processar relatorio com intervalo de 0 dias (mesmo dia)
     Dado que o usuario informa a data inicial    2026-06-01
     E informa a data final    2026-06-01
@@ -33,7 +31,7 @@ CT03 - Deve bloquear relatorio com 8 ou mais dias
     Quando solicitar a geracao do relatorio
     Entao o sistema deve apresentar a mensagem de erro    Período máximo de 7 dias
 
-*** Palavras-Chave ***
+*** Keywords ***
 Dado que o usuario acessa a tela de relatorios
     Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
